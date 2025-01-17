@@ -1,0 +1,61 @@
+.monthlyBudget {
+    width: 23vh;
+    color: var(--bg-blue-color);
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid var(--bg-orange-color);
+    font-family: var(--font-family)
+}
+
+.btn {
+    background-color: var(--bg-blue-color);
+    color: var(--font-color);
+}
+
+.fields-containt {
+    /* background-color: var(--bg-blue-color); */
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    margin: 2% 15%;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.grid-container p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    font-size: 13px;
+}
+
+
+table {
+    --bs-table-striped-bg: rgb(255, 255, 255);
+    --bs-table-bg: #dbd7d7;
+}
+
+th,
+td {
+    font-size: 12px;
+}
+
+th {
+    background-color: var(--bg-blue-color);
+    color: var(--font-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--bg-blue-color) !important;
+    cursor: pointer;
+}

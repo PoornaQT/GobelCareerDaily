@@ -1,0 +1,49 @@
+.addEmployee {
+    width: 23vh;
+    color: var(--bg-blue-color);
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid var(--bg-orange-color);
+    font-family: var(--font-family);
+    margin-bottom: 4%;
+}
+
+.dropdown-select {
+    width: 88vh;
+    height: 35px;
+    margin: 10px 0px;
+    display: flex;
+    color: rgb(110, 108, 108);
+    padding-left: 10px;
+    font-family: var(--font-family);
+    border: 1px solid rgb(167, 165, 165);
+    border-radius: 3px;
+}
+
+.btn{
+    background-color: var(--bg-blue-color);
+    color: var(--font-color);
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.submit_btn{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  input.ng-invalid.ng-touched,
+  select.ng-invalid.ng-touched {
+    border-color: red;
+  }
+ 
+  
+  .is-invalid {
+    border: 1px solid red;
+  }
+  

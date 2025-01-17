@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="main-container">
+        <div>
+            <div class="bill  gobelBlueColor">Manage Role Names</div>
+            <div>
+                <div class="btn_back" (click)="navigateToManage()">Back</div>
+            </div>
+        </div>
+
+        <div class="fields-container">
+            <div class="field-div">
+                <label for="roletypelbl" class="">RoleType Name</label>
+                <input type="text" id="Roletypenameid" name="RoleTypenameNm" [(ngModel)]="roleTypedata.RoleTypeName">
+            </div>
+            <div class="field-div">
+                <button (click)="AddRoleType()">Add</button>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>RoleType ID</th>
+                        <th>RoleType Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of roleTypeList, let i=index">
+                        <td><input type="checkbox" name="checkname" id="checkid"></td>
+                        <td>{{ i+1}}</td>
+                        <td *ngIf="EditIndex !== i">{{ item.RoleTypeName }}</td>
+                        <td *ngIf="EditIndex === i"><input type="text" name="rolename" id="rolenameId"
+                                [(ngModel)]="roleTypeInlinedata.RoleTypeName"></td>
+                        <td>
+                            <a *ngIf="EditIndex !== i" (click)="EditRoleData(i,item.RId)">Edit | </a>
+                            <a *ngIf="EditIndex !== i" (click)="DeleteRoleType(item.RId)">Delete </a>
+                            <a *ngIf="EditIndex === i" (click)="UpdateRoleTypeFields()">Update </a>
+                            <a *ngIf="EditIndex === i" (click)="CanCelEdit()"> Cancel</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

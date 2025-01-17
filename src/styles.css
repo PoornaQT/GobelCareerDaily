@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+:root{
+    --bg-blue-color:#227dba;
+    --font-color:white;
+}
+:root{
+    --bg-orange-color:orange;
+    --font-color:white;
+}
+
+:root{
+    --font-family:'Manrope', sans-serif;
+}
+
+
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        min-width: 1200px !important;
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 2081px !important;
+    }
+}

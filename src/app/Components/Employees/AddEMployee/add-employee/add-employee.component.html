@@ -1,0 +1,187 @@
+<div class="container">
+    <div class="main-container">
+        <div>
+            <div class="addEmployee">Add Employee</div>
+        </div>
+
+        <div class="container mb-5">
+            <form #employeeForm="ngForm" (ngSubmit)="AddEmployee(employeeForm)">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <label for="companyId">Company <span class="" style="color: red;">*</span></label>
+                        <select name="company" id="companyId" class="dropdown-select" [(ngModel)]="employee.CompanyId"
+                            required #company="ngModel"
+                            [class.is-invalid]="company.invalid && (company.touched || employeeForm.submitted)">
+                            <option value="" disabled selected>-- Select Company --</option>
+                            <option *ngFor="let item of CompanyList" [value]="item.CId">{{ item.CompanyName }}</option>
+                        </select>
+                        <div *ngIf="company.invalid && (company.touched || employeeForm.submitted)" class="error">
+                            Company is required.</div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <label for="birthDateId">Birth Date</label>
+                        <input type="date" name="birthDate" id="birthDateId" [(ngModel)]="employee.BirthDate"
+                            class="dropdown-select">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="fullNameId">Full Name <span class="" style="color: red;">*</span></label>
+                        <input type="text" name="fullName" id="fullNameId" [(ngModel)]="employee.FullName"
+                            class="dropdown-select" required #fullName="ngModel">
+                        <div *ngIf="fullName.invalid && fullName.touched" class="error">Full Name is required.</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="projectId">Project *</label>
+                        <select name="project" id="projectId" class="dropdown-select" [(ngModel)]="employee.ProjectId"
+                            #project="ngModel" 
+                            [class.is-invalid]="project.invalid && (project.touched || employeeForm.submitted)">
+                            <option value="0" disabled>-- Select Project --</option>
+                            <option *ngFor="let item of projectList" [value]="item.PId">{{ item.ProjectName }}</option>
+                        </select>
+                        <!-- <div *ngIf="project.invalid && (project.touched || employeeForm.submitted)" class="error">
+                            Project is required.</div> -->
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <label for="emailId">E-mail </label>
+                        <input type="text" name="email" id="emailId" [(ngModel)]="employee.Email" #email="ngModel"
+                            class="dropdown-select">
+
+                        <!-- <div *ngIf="email.invalid && email.touched" class="error">
+                            <div *ngIf="email.errors?.['required']">E-mail is required.</div>
+                            <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+                        </div> -->
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <label for="clientId">Client </label>
+                        <select name="client" id="clientId" class="dropdown-select" [(ngModel)]="employee.ClientId"
+                            >
+                            <option value="0" disabled selected>-- Select --</option>
+                            <option value="{{item.CId}}" *ngFor="let item of clientList">{{item.ClientName}}</option>
+                        </select>
+                        <!-- <div *ngIf="client.invalid && client.touched" class="error">Client is required.</div> -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="employeeTypeId">Employee Type <span class="" style="color: red;">*</span></label>
+                        <select name="employeeType" id="employeeTypeId" class="dropdown-select"
+                            [(ngModel)]="employee.EmployeeTypeId" required #employeeType="ngModel">
+                            <option value="0" disabled selected>-- Select --</option>
+                            <option value="{{item.ETId}}" *ngFor="let item of employeeTypeList">
+                                {{item.EmployeeTypeName}}</option>
+                        </select>
+                        <div *ngIf="employeeType.invalid && employeeType.touched" class="error">Employee Type is
+                            required.</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="venderId">Vender </label>
+                        <select name="vender" id="venderId" class="dropdown-select" [(ngModel)]="employee.Vender"
+                            required #vender="ngModel">
+                            <option value="0" disabled selected>-- Select --</option>
+                            <option value="{{item.VId}}" *ngFor="let item of venderList">{{item.VenderName}}</option>
+                        </select>
+                        <div *ngIf="vender.invalid && vender.touched" class="error">Vender is required.</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="primaryContactId">Contact number (Primary)</label>
+                        <input type="number" name="primaryContact" id="primaryContactId"
+                            [(ngModel)]="employee.Contact_number_Primary" class="dropdown-select">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="hiringManagerId">Hiring Manager </label>
+                        <input type="text" name="hiringManager" id="hiringManagerId"
+                            [(ngModel)]="employee.HiringManager" class="dropdown-select" 
+                            #hiringManager="ngModel">
+                        <!-- <div *ngIf="hiringManager.invalid && hiringManager.touched" class="error">Hiring Manager is
+                            required.</div> -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="alternativeContactId">Contact number (Alternative)</label>
+                        <input type="number" name="alternativeContact" id="alternativeContactId"
+                            [(ngModel)]="employee.Contact_number_Alternative" class="dropdown-select">
+                        <div *ngIf="">Contact number (Alternative)</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="startDateId">Start Date</label>
+                        <input type="date" name="startDate" id="startDateId" [(ngModel)]="employee.StartDate"
+                            class="dropdown-select">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="currentLocationId">Current Location</label>
+                        <input type="text" name="currentLocation" id="currentLocationId"
+                            [(ngModel)]="employee.Current_Location" class="dropdown-select">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="endDateId">End Date</label>
+                        <input type="date" name="endDate" id="endDateId" [(ngModel)]="employee.EndDate"
+                            class="dropdown-select">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="skillsId">Skills</label>
+                        <textarea name="skills" id="skillsId" class="dropdown-select"
+                            [(ngModel)]="employee.skills"></textarea>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="billableId">Billable</label>
+                        <select name="billable" id="billableId" class="dropdown-select"
+                            [(ngModel)]="employee.BillableId" #billable="ngModel">
+                            <option value="0" disabled selected>-- Select --</option>
+                            <option value="{{item.BId}}" *ngFor="let item of billableList">{{item.BillableName}}
+                            </option>
+                        </select>
+                        <!-- <div *ngIf="billable.invalid && billable.touched" class="error">Billable is required.</div> -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="roleTypeId">Role Title</label>
+                        <select name="roleTitle" id="roleTypeId" class="dropdown-select"
+                            [(ngModel)]="employee.RoleType">
+                            <option [value]="0" disabled selected>-- Select --</option>
+                            <option value="{{item.RId}}" *ngFor="let item of roleTypeList">{{item.RoleTypeName}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="onBoardingStatusId">OnBoarding Status</label>
+                        <select name="onBoardingStatus" id="onBoardingStatusId" class="dropdown-select"
+                            [(ngModel)]="employee.OnBoardingStatusId" #onBoardingStatus="ngModel">
+                            <option value="0" disabled selected>-- Select --</option>
+                            <option value="{{item.OBId}}" *ngFor="let item of onBoardingStatusList">
+                                {{item.OnBoardingStatusName}}</option>
+                        </select>
+                        <!-- <div *ngIf="onBoardingStatus.invalid && onBoardingStatus.touched" class="error">OnBoarding Status is required.</div> -->
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="experienceId">Experience</label>
+                        <input type="text" name="experience" id="experienceId" [(ngModel)]="employee.Experence"
+                            class="dropdown-select">
+                    </div>
+
+                    <div class="col-lg-6 submit_btn">
+                        <button class="btn" type="submit">Submit</button>
+                        <button class="btn" type="reset" (click)="ResetAddEmployee()">Reset</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

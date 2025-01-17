@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="main-container">
+        <div>
+            <div class="bill  gobelBlueColor">Manage Project</div>
+            <div>
+                <div class="btn_back" (click)="navigatetoManage()">Back</div>
+            </div>
+        </div>
+
+        <div class="fields-container" id="top-section">
+            <div class="field-div">
+                <label for="" class="">Project Name</label>
+                <input type="text" id="projectnameid" name="projectnm" [(ngModel)]="projectData.ProjectName">
+            </div>
+            <div class="field-div">
+                <label for="">Project Type</label>
+                <input type="text" id="projecttypenameid" name="projecttypenm" [(ngModel)]="projectData.ProjectType">
+            </div>
+            <div class="field-div">
+                <label for="">Hiring Manager</label>
+                <input type="text" id="HiringManagerid" name="HiringManagernm" [(ngModel)]="projectData.HiringManager">
+            </div>
+            <div class="field-div">
+                <label for="">BDM</label>
+                <select name="" id="" [(ngModel)]="projectData.BDMId">
+                    <option value="0" disabled selected>--Select BDM--</option>
+                    <option value="{{item.BId}}" *ngFor="let item of bdmList">{{item.BDMName}}</option>
+                </select>
+            </div>
+            <div class="field-div">
+                <button *ngIf="projectData.PId==0" (click)="AddProject()">Add</button>
+                <button *ngIf="projectData.PId >0"  (click)="UpdateProject()">Update</button>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>Project Type</th>
+                        <th>Hiring Manager</th>
+                        <th>BDM</th>
+                        <th><button (click)="DeleteProjects()">Delete All</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of projectList, let i=index">
+                        <td><input type="checkbox" name="checkname" id="checkid"[value]="item.PId" (change)="toggleSelection($event)"></td>
+                        <td>{{ i+1}}</td>
+                        <td>{{ item.ProjectName }}</td>
+                        <td>{{ item.ProjectType }}</td>
+                        <td>{{ item.HiringManager }}</td>
+                        <td>{{ item.BDMName }}</td>
+                        <td>
+                            <a  (click)="GetProjectByPId(item.PId)">Edit | </a>
+                            <!-- <a  (click)="editProject(item.PId)">Edit | </a> -->
+                            <a (click)="DeleteProject(item.PId)">Delete</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="main-conatiner">
+        <div class="d-flex justify-content-center align-item-center">
+            <div class="monthlyBudget">Monthly Invoice</div>
+        </div>
+    </div>
+
+    <div class="">
+        <button class="btn" [routerLink]="['/billingData']" [routerLinkActive]="['routerLinkActive']">Back</button>
+    </div>
+
+    <div class="fields-containt">
+        <div>
+
+
+            <div class="grid-container">
+                <p><strong>Fiscal Year:</strong> </p>
+                <p><strong>Project:</strong> </p>
+                <p><strong>Hiring Manager:</strong> </p>
+                <p><strong>PO Number:</strong> </p>
+                <p><strong>BDM:</strong> </p>
+                <p><strong>Month:</strong> </p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Rate</th>
+                        <th>montly Hours</th>
+                        <th>Invoiced Amount</th>
+                        <th>C Amount</th>
+                        <th>V Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td></td>
+                        <td> <a href=""></a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <!-- <td>
+                            <a href="" data-bs-target="#staticBackdrop"> Edit </a>
+                        </td> -->
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="font-weight: bold;"></td>
+                        <td style="font-weight: bold;">Hr:0</td>
+                        <td style="font-weight: bold;">{{ totalPOAmount | currency }}</td>
+                        <td style="font-weight: bold;">{{ totalInvoicedAmount | currency }}</td>
+                        <td style="font-weight: bold;">{{ totalInvoicedAmount | currency }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

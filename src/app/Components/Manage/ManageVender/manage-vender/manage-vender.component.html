@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="main-container">
+        <div>
+            <div class="bill  gobelBlueColor">Manage Venders List</div>
+            <div>
+                <div class="btn_back" (click)="navigateToManage()">Back</div>
+            </div>
+        </div>
+
+        <div class="fields-container">
+            <div class="field-div">
+                <label for="" class="">Vender Name</label>
+                <input type="text" id="venderid" name="vendernm" [(ngModel)]="venderData.VenderName">
+            </div>
+            <div class="field-div">
+                <button (click)="AddVender()">Add</button>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Vender ID</th>
+                        <th>Vender Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of venderList, let i= index">
+                        <td><input type="checkbox" name="checkname" id="checkid"></td>
+                        <td>{{ i+1 }}</td>
+                        <td *ngIf="i !== EditIndex">{{ item.VenderName }}</td>
+                        <td *ngIf="i === EditIndex">
+                            <input type="text" name="" id="" [(ngModel)]="venderInLineData.VenderName">
+                        </td>
+                        <td>
+                            <a *ngIf="i !== EditIndex"(click)="EditVender(i, item.VId)">Edit | </a>
+                            <a *ngIf="i !== EditIndex" (click)="DeleteRoleType(item.VId)">Delete</a>
+                            <a *ngIf="i === EditIndex" (click)="UpdateVender()">Update </a>
+                            <a *ngIf="i === EditIndex" (click)="CancelEdit()"> Cancel</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

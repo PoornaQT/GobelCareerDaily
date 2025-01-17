@@ -1,0 +1,278 @@
+<div class="container">
+    <div class="main-container">
+        <div>
+            <div class="bill  gobelBlueColor">Billing Data</div>
+        </div>
+        <div class="dropdown">
+            <div class="">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedCompany" (change)="filteredData()">
+                    <option value="0" disabled selected>-- Select Company --</option>
+                    <option class="companycls" *ngFor="let company of CompanyList" [value]="company.CompanyName">
+                        {{company.CompanyName}}
+                    </option>
+                </select>
+
+            </div>
+            <div class="">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedYear">
+                    <option value="0" selected disabled>-- Select Year --</option>
+                    <option class="opYearcls" value="{{item.YearName}}" *ngFor="let item of YearsList">{{item.YearName}}
+                    </option>
+                </select>
+            </div>
+            <div class="">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedFiscialYear">
+                    <option value="0" selected disabled>-- Select FiscalYear --</option>
+                    <option value="{{item.FiscialYearName}}" *ngFor="let item of FiscialYearsList">
+                        {{item.FiscialYearName}}</option>
+                </select>
+            </div>
+            <div class="">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedMonth">
+                    <option value="0" disabled selected>-- Select Month --</option>
+                    <option value="{{item.MonthName}}" *ngFor="let item of MonthList">{{item.MonthName}}</option>
+                </select>
+            </div>
+            <div class="">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedStatus">
+                    <option value="0" disabled selected>-- Status --</option>
+                    <option [ngValue]="true">Active</option>
+                    <option [ngValue]="false">In Active</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="sub-container">
+                <div *ngFor="let item of details" class="sub-div gobelOrangeColor">
+                    <p>{{ item.count }}</p>
+                    <span>{{ item.status }}</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="search-div">
+            <div>
+                <label for="">Search :</label>
+                <input type="search" [(ngModel)]="searchQuery" (input)="filteredData()" name="serachnm" id="searchid"
+                    class="search">
+                <button class="btn btn-billing" (click)="AddNewBilling()">Add New
+                    Billing</button>
+            </div>
+        </div>
+
+        <!-- For shadow -->
+        <!-- <div class="backdrop" *ngIf="AddFields"></div> -->
+
+        <div class="f-year-div" *ngIf="AddFields">
+            <div class="">
+                <div class="header-popup">
+                    <span class="dropdown-label">Add/Edit Billing</span>
+                    <button type="button" class="btn-close" (click)="cleanFields()"></button>
+                </div>
+                <div class="">
+                    <div class="">
+                        <label class="switch">
+                            <input type="checkbox" />
+                            <span class="slider round"></span>
+                        </label>
+                        <label for="">F-Year</label>
+                    </div>
+                    <div class="model-popup">
+                        <div>
+                            <div>
+                                <label for="" class="dropdown-label">Company</label>
+                            </div>
+                            <select name="" id="" class="dropdown-popup" [(ngModel)]="Billing.CompanyId">
+                                <option value="0" selected>-- Select --</option>
+                                <option *ngFor="let company of CompanyList" [ngValue]="company.CId">
+                                    {{company.CompanyName}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <div>
+                                <label for="" class="dropdown-label">Fiscal Year</label>
+                            </div>
+                            <!-- <input type="number" name="txtnm" id="txtid" class="dropdown-popup" placeholder="" [(ngModel)]="Billing.FiscalYear"> -->
+                            <select name="" id="" class="dropdown-popup" [(ngModel)]="Billing.FiscalYearId">
+                                <option value="0" selected>-- Select --</option>
+                                <option [ngValue]="item.FId" *ngFor="let item of FiscialYearsList">
+                                    {{item.FiscialYearName}}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="" class="dropdown-label">Project</label>
+                            </div>
+                            <select name="" id="" class="dropdown-popup" [(ngModel)]="Billing.ProjectId">
+                                <option value="0" selected>-- Select --</option>
+                                <option [ngValue]="item.PId" *ngFor="let item of projectList">{{item.ProjectName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="" class="dropdown-label"> PO Number</label>
+                            </div>
+                            <input type="number" name="txtnm" id="txtid" class="dropdown-popup"
+                                [(ngModel)]="Billing.PONumber" placeholder="">
+                        </div>
+                        <div>
+                            <div>
+                                <label for="" class="dropdown-label">Billing Active</label>
+                            </div>
+                            <select name="" id="" class="dropdown-popup" [(ngModel)]="Billing.IsActive">
+                                <option value="0" selected>-- Select --</option>
+                                <option [ngValue]="false">InActive</option>
+                                <option [ngValue]="true">Active</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="button" class="submit_btn me-1" *ngIf="Add_Edit == false"
+                        (click)="SubmitBillingData()">Submit</button>
+                    <button type="button" class="submit_btn me-1" *ngIf="Add_Edit == true"
+                        (click)="UpdateBillingData()">Update</button>
+                    <button type="button" class="">Reset</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div>
+            <div class="mt-4">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Company</th>
+                            <th>Year</th>
+                            <th>Fiscal Year</th>
+                            <th>Project</th>
+                            <th>Type</th>
+                            <th>Hiring Manager</th>
+                            <th>BDM</th>
+                            <th>Emp Count</th>
+                            <th>PO Number</th>
+                            <th>PO Amount</th>
+                            <th>Invoiced Amount</th>
+                            <th>Open Amount</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of filteredData(); let i = index ">
+                            <td>{{ i +1}}</td>
+                            <td>{{ item.CompanyName}}</td>
+                            <td>{{ item.YearName }}</td>
+                            <td>{{ item.FiscialYearName }}</td>
+                            <td>{{ item.ProjectName }}</td>
+                            <td>{{ item.Type }}</td>
+                            <td>{{ item.HiringManager }}</td>
+                            <td>{{ item.BDMName }}</td>
+                            <td>{{ item.EmpCount }}</td>
+                            <!-- <td><a href="#" [routerLink]="['/monthlyBudget']"
+                                [routerLinkActive]="['routerLinkActive']" (click)="GetPONumberDetails(item.BId)" >{{ item.PONumber }}</a></td> -->
+                            <td><a (click)="GetPONumberDetails(item.BId,item.PONumber)">{{ item.PONumber }}</a></td>
+                            <td>$ {{ item.POAmount }}</td>
+                            <td>$ {{ item.InvoicedAmount }}</td>
+                            <td>$ {{ item.OpenAmount }}</td>
+                            <td> {{ item.LastUpdated | date:'dd/MM/yy h:mm:ss a' }}</td>
+                            <td>
+                                <a (click)="GetBillingDataByBillingId(item.BId)">Edit | </a>
+                                <a (click)="DeleteBillingdata(item.BId)">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="search-div">
+    <div>
+        <label for="">Search :</label>
+        <input type="search" [(ngModel)]="searchQuery" name="serachnm" id="searchid" class="search">
+        <button class="btn btn-billing" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New
+            Billing</button>
+    </div>
+</div>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="dropdown-label">Add/Edit Billing</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="f-year-div">
+                    <label class="switch" style="color: black;">
+                        <input type="checkbox"/>
+                        <span class="slider round"></span> 
+                      </label>
+                      <label for="">F-Year</label>
+                </div>
+                <div class="model-popup">
+                    <div>
+                        <label for="" class="dropdown-label">Company</label>
+                        <select name="" id="" class="form-control">
+                            <option value="0" selected>-- Select --</option>
+                            <option value="">Quadrant</option>
+                            <option value="">Tech</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="" class="dropdown-label">Fiscal Year</label>
+                        <select name="" id="" class="form-control">
+                            <option value="0" selected>-- Select --</option>
+                            <option value="">Year 1</option>
+                            <option value="">Year 2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="" class="dropdown-label">Project</label>
+                        <select name="" id="" class="form-control">
+                            <option value="0" selected>-- Select --</option>
+                            <option value="">Careers</option>
+                            <option value="">Finix</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="" class="dropdown-label"> PO Number</label>
+                        <input type="text" name="txtnm" id="txtid" class="form-control" placeholder="">
+                    </div>
+                    <div>
+                        <label for="" class="dropdown-label">Billing Active</label>
+                        <select name="" id="" class="form-control">
+                            <option value="0" selected>-- Select --</option>
+                            <option value="">Active</option>
+                            <option value="">InActive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-primary">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+ -->

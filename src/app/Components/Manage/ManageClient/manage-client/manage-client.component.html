@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="main-container">
+        <div>
+            <div class="bill  gobelBlueColor">Manage Clients List</div>
+            <div>
+                <div class="btn_back" (click)="navigateToManage()">Back</div>
+            </div>
+        </div>
+
+        <div class="fields-container">
+            <div class="field-div">
+                <label for="" class="">Client Name</label>
+                <input type="text" id="clientid" name="clientnm" [(ngModel)]="clientdata.ClientName">
+            </div>
+            <div class="field-div">
+                <button (click)="AddClient()">Add</button>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Client ID</th>
+                        <th>Client Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of clientList, let i=index">
+                        <td><input type="checkbox" name="checkname" id="checkid"></td>
+                        <td>{{ i+1}}</td>
+                        <td *ngIf="i !== EditIndex">{{ item.ClientName }}</td>
+                        <td *ngIf="i === EditIndex">
+                            <input type="text" name="clientnamenm" id="clientnameid"
+                                [(ngModel)]="clientInLinedata.ClientName">
+                        </td>
+                        <td>
+                            <a *ngIf="i === EditIndex" (click)="UpdateClient()">Update </a>
+                            <a *ngIf="i === EditIndex" (click)="CancelEdit()">Cancel </a>
+                            <a *ngIf="i !== EditIndex" (click)="GetClientByCId(i,item.CId)">Edit | </a>
+                            <a *ngIf="i !== EditIndex" (click)="DeleteClient(item.CId)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

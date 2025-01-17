@@ -1,0 +1,56 @@
+.bill {
+    width: 160px;
+    color: var(--bg-blue-color);
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid var(--bg-orange-color);
+    font-family: var(--font-family);
+}
+
+.btn_back{
+    color: var(--bg-blue-color);
+    padding: 1% 0% ;
+    cursor: pointer;
+    width: 40px;
+}
+
+.fields-container{
+    display: flex;
+    align-items: center;
+   font-size: 12px;
+   font-weight: bold;
+}
+.field-div{
+    margin-right: 5px;
+}
+
+select{
+    width: 150px;
+    height: 25px;
+}
+
+table {
+    --bs-table-striped-bg: rgb(255, 255, 255);
+    --bs-table-bg: #dbd7d7;
+    font-family: var(--font-family);
+}
+
+option{
+    font-family: var(--font-family);
+}
+
+th,
+td {
+    font-size: 12px;
+}
+
+th{
+    background-color: var(--bg-blue-color);
+    color: var(--font-color);
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--bg-blue-color) !important;
+    font-family: var(--font-family);
+}

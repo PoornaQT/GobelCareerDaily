@@ -1,0 +1,21 @@
+.footer {
+    background-color: #222;
+    color: #dad9d9;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+    
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer a {
+    color: #00bfff;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

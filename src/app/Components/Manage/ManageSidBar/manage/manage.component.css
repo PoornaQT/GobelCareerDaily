@@ -1,0 +1,30 @@
+.monthlyBudget {
+    width: 12vh;
+    color: var(--bg-blue-color);
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid var(--bg-orange-color);
+    font-family: var(--font-family);
+    margin-left: 10px
+}
+
+.manage-list {
+    list-style-type: none;
+    padding: 0;
+    font-family: var(--font-family);
+  }
+  
+  .manage-list li {
+    margin: 10px 0;
+  }
+  
+  .manage-list a {
+    text-decoration: none;
+    color:var(--bg-blue-color);
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .manage-list a:hover {
+    text-decoration:none;
+  }

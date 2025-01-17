@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="main-conatiner">
+        <div class="d-flex justify-content-center align-item-center">
+            <div class="monthlyBudget">Monthly Budget</div>
+        </div>
+    </div>
+
+    <div class="">
+        <button class="btn" [routerLink]="['/billingData']" [routerLinkActive]="['routerLinkActive']">Back</button>
+    </div>
+
+    <div class="fields-containt">
+        <div>
+            <div class="grid-container">
+                <p><strong>Company:</strong> {{ PonumberDetials.CompanyName }}</p>
+                <p><strong>Fiscal Year:</strong> {{ PonumberDetials.FiscialYearName }}</p>
+                <p><strong>Project:</strong> {{ PonumberDetials.ProjectName }}</p>
+                <p><strong>Hiring Manager:</strong> {{ PonumberDetials.HiringManager }}</p>
+                <p><strong>PO Number:</strong> {{ PonumberDetials.PONumber }}</p>
+                <p><strong>Type:</strong> {{ PonumberDetials.Type }}</p>
+                <p><strong>BDM:</strong> {{ PonumberDetials.BDMName }}</p>
+                <p><strong>Employee Count:</strong> {{ PonumberDetials.EmpCount }}</p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>PO Number</th>
+                        <th>Month</th>
+                        <th>PO Amount</th>
+                        <th>Invoiced Amount</th>
+                        <th>Invoiced On</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+  <tr *ngFor="let item of monthyBudgetlist; let i = index">
+    <td>{{ item.PONumber }}</td>
+    <td>
+      <a href="">{{ item.MonthName }}</a>
+    </td>
+    <td *ngIf="editingIndex !== i">{{ item.POAmount }}</td>
+    <td *ngIf="editingIndex === i">
+      <input text="number" id="poamountid" name="poamountnm" [(ngModel)]="monthlyBudgetData.POAmount" />
+    </td>
+    <td *ngIf="editingIndex !== i">{{ item.InvoicedAmount }}</td>
+    <td *ngIf="editingIndex === i">
+      <input text="number" id="invoiceamountid" name="invoiceamounnm" [(ngModel)]="monthlyBudgetData.InvoicedAmount" />
+    </td>
+    <td *ngIf="editingIndex !== i">{{ item.InvoicedOn }}</td>
+    <td *ngIf="editingIndex === i">
+        <input type="text" id="invoiconid" name="invoiceonnm" [(ngModel)]="monthlyBudgetData.InvoicedOn">
+    </td>
+    <td>
+      <a *ngIf="editingIndex !== i" >Save </a>
+      <a *ngIf="editingIndex !== i" (click)="MonthlyBudgetByMBId(item.MBId, i)">Edit </a>
+      <a *ngIf="editingIndex !== i" (click)="DeleteMonthlyBudgetById(item.MBId)">Delete </a>
+      <a *ngIf="editingIndex === i" (click)="UpdateMonthlyFields()">Update </a>
+      <a *ngIf="editingIndex === i" (click)="CancelEdit()">Cancel</a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="font-weight: bold;">Total</td>
+    <td style="font-weight: bold;">{{ totalPOAmount | currency }}</td>
+    <td style="font-weight: bold;">{{ totalInvoicedAmount | currency }}</td>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody>
+
+                  
+            </table>
+        </div>
+    </div>
+</div>
