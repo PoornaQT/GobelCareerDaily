@@ -9,20 +9,26 @@ import { Router } from '@angular/router';
 export class ManageComponent {
   constructor(private router: Router) { }
 
-  navigateToManageRole(): void {
-    this.router.navigate(['/manageRole']);
+
+  navigateTo(route: string): void {
+    this.router.navigate(['manage', route]); // Navigate to child routes
   }
 
-  navigateToManageVendor(): void {
-    this.router.navigate(['/manageVender']);
-  }
 
-  navigateToManageClient(): void {
-    this.router.navigate(['/manageClient']);
-  }
+  // navigateToManageRole(): void {
+  //   this.router.navigate(['/manageRole']);
+  // }
 
-  navigateToManageProject(): void {
-    this.router.navigate(['/manageProject']);
-  }
+  // navigateToManageVendor(): void {
+  //   this.router.navigate(['/manageVender']);
+  // }
+
+  // navigateToManageClient(): void {
+  //   this.router.navigate(['/manageClient']);
+  // }
+
+  // navigateToManageProject(): void {
+  //   this.router.navigate(['/manageProject']);
+  // }
 }
 

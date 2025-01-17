@@ -1,4 +1,5 @@
-<div class="container">
+<div class="">
+    <!-- <div class="container"> -->
     <div class="main-container">
         <div>
             <div class="bill  gobelBlueColor">Manage Project</div>
@@ -28,8 +29,8 @@
                 </select>
             </div>
             <div class="field-div">
-                <button *ngIf="projectData.PId==0" (click)="AddProject()">Add</button>
-                <button *ngIf="projectData.PId >0"  (click)="UpdateProject()">Update</button>
+                <button class="button" *ngIf="projectData.PId==0" (click)="AddProject()">Add</button>
+                <button  class="button" *ngIf="projectData.PId >0"  (click)="UpdateProject()">Update</button>
             </div>
         </div>
 

@@ -12,6 +12,9 @@
     list-style-type: none;
     padding: 0;
     font-family: var(--font-family);
+    width: fit-content;
+    margin-right: 10px;
+    /* position: fixed; */
   }
   
   .manage-list li {
@@ -28,3 +31,5 @@
   .manage-list a:hover {
     text-decoration:none;
   }
+
+  

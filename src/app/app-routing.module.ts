@@ -20,36 +20,49 @@ const routes: Routes = [
     path: 'billingData', component: BillingDataComponent
   },
   {
-    path:'monthlyBudget/:BId/:POId' ,component:MonthlyBudgetComponent
+    path: 'monthlyBudget/:BId/:POId', component: MonthlyBudgetComponent
   },
   {
-    path:'addEmployee', component:AddEmployeeComponent
+    path: 'addEmployee', component: AddEmployeeComponent
   },
   {
-    path:'montlyInvoice', component:MonthlyInVoiceComponent
+    path: 'montlyInvoice', component: MonthlyInVoiceComponent
   },
   {
-    path:'manage',component:ManageComponent
+    path: 'manage', component: ManageComponent ,
+    children:[
+      {
+        path: 'manageProject', component: ManageProjectComponent
+      },
+      {
+        path: 'manageClient', component: ManageClientComponent
+      },
+      {
+        path: 'manageVender', component: ManageVenderComponent
+      },
+      {
+        path: 'manageRole', component: ManageRoleComponent
+      },
+    ]
   },
-  {
-    path:'manageProject', component:ManageProjectComponent
-  },
-  {
-    path:'manageClient',component:ManageClientComponent
-  },
-  {
-    path:'manageVender',component:ManageVenderComponent
-  },
-  {
-    path:'manageRole',component:ManageRoleComponent
-  }
+  // {
+  //   path: 'manageProject', component: ManageProjectComponent
+  // },
+  // {
+  //   path: 'manageClient', component: ManageClientComponent
+  // },
+  // {
+  //   path: 'manageVender', component: ManageVenderComponent
+  // },
+  // {
+  //   path: 'manageRole', component: ManageRoleComponent
+  // },
+  // { path: '', redirectTo: '/manage/manageProject', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled', // Restores scroll position
-    }),],
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

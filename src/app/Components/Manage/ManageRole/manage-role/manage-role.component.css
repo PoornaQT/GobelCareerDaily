@@ -33,6 +33,7 @@ table {
     --bs-table-striped-bg: rgb(255, 255, 255);
     --bs-table-bg: #dbd7d7;
     font-family: var(--font-family);
+    /* width: 83%; */
 }
 
 option{

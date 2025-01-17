@@ -23,6 +23,9 @@
 .field-div{
     margin-right: 5px;
 }
+.button{
+    margin-top: 15px;
+}
 
 select{
     width: 150px;

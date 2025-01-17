@@ -1,19 +1,22 @@
 <div class="container">
-    <div class="main-conatiner">
-        <div class="d-flex justify-content-start align-item-center">
-            <div class="monthlyBudget">Manage</div>
-        </div>
+  <div class="main-conatiner">
+    <div class="d-flex justify-content-start align-item-center">
+      <div class="monthlyBudget">Manage</div>
     </div>
-
-    <div>
-        <ul class="manage-list">
-          <li><a (click)="navigateToManageRole()">Manage Role Names</a></li>
-          <li><a (click)="navigateToManageVendor()">Manage Vendors List</a></li>
-          <li><a (click)="navigateToManageClient()">Manage Clients List</a></li>
-          <li><a (click)="navigateToManageProject()">Manage Projects</a></li>
-          <li><a>Manage Email Credentials</a></li>
-        </ul>
-      </div>
+  </div>
+  <div class="row d-flex">
+    <div class="col-lg-2">
+      <ul class="manage-list">
+        <li><a (click)="navigateTo('manageRole')">Manage Role Names</a></li>
+        <li><a (click)="navigateTo('manageVender')">Manage Vendors List</a></li>
+        <li><a (click)="navigateTo('manageClient')">Manage Clients List</a></li>
+        <li><a (click)="navigateTo('manageProject')">Manage Projects</a></li>
+        <li><a>Manage Email Credentials</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-10">
       <router-outlet></router-outlet>
-      
+    </div>
+  </div>
+
 </div>

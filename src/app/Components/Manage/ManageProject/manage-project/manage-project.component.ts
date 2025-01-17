@@ -118,7 +118,6 @@ export class ManageProjectComponent implements OnInit {
     }
   }
 
-
   UpdateProject(): any {
     debugger
     this.projectSeivce.UpdateProjects(this.projectData).subscribe({
@@ -141,7 +140,6 @@ export class ManageProjectComponent implements OnInit {
     });
   }
 
-
   GetProjectByPId(PId: number): any {
     this.projectSeivce.GetProjectByPId(PId).subscribe({
       next: (responce: any) => {
@@ -160,9 +158,6 @@ export class ManageProjectComponent implements OnInit {
       }
     });
   }
-
-
-
   toggleSelection(event: any) {
     const id = +event.target.value;
     if (event.target.checked) {
