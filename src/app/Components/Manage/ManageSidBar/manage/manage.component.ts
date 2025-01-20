@@ -9,9 +9,8 @@ import { Router } from '@angular/router';
 export class ManageComponent {
   constructor(private router: Router) { }
 
-
   navigateTo(route: string): void {
-    this.router.navigate(['manage', route]); // Navigate to child routes
+    this.router.navigate(['manage', route]);
   }
 
 

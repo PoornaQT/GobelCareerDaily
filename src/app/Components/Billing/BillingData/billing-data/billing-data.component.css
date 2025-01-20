@@ -121,7 +121,7 @@ td {
 
 .f-year-div {
     position: absolute;
-    top: 20%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -20%);
     border: 1px solid black;
@@ -135,7 +135,7 @@ td {
     background-color: white;
     z-index: 1000;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    /* position: fixed; */
 
 }
 

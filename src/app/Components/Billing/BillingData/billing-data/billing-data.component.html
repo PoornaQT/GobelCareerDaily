@@ -5,37 +5,37 @@
         </div>
         <div class="dropdown">
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedCompany" (change)="filteredData()">
-                    <option value="0" disabled selected>-- Select Company --</option>
-                    <option class="companycls" *ngFor="let company of CompanyList" [value]="company.CompanyName">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedCompany" (change)="GetBillingDataFiter()">
+                    <option value="0"  selected>-- Select Company --</option>
+                    <option class="companycls" *ngFor="let company of CompanyList" [value]="company.CId">
                         {{company.CompanyName}}
                     </option>
                 </select>
 
             </div>
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedYear">
-                    <option value="0" selected disabled>-- Select Year --</option>
-                    <option class="opYearcls" value="{{item.YearName}}" *ngFor="let item of YearsList">{{item.YearName}}
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedYear" (change)="GetBillingDataFiter()">
+                    <option value="0" selected >-- Select Year --</option>
+                    <option class="opYearcls" value="{{item.YId}}" *ngFor="let item of YearsList">{{item.YearName}}
                     </option>
                 </select>
             </div>
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedFiscialYear">
-                    <option value="0" selected disabled>-- Select FiscalYear --</option>
-                    <option value="{{item.FiscialYearName}}" *ngFor="let item of FiscialYearsList">
-                        {{item.FiscialYearName}}</option>
+                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedFiscialYear" (change)="GetBillingDataFiter()">
+                    <option value="0" selected >-- Select FiscalYear --</option>
+                    <option value="{{item.FId}}" *ngFor="let item of FiscialYearsList">
+                        {{item.FiscalYearName}}</option>
                 </select>
             </div>
             <div class="">
                 <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedMonth">
-                    <option value="0" disabled selected>-- Select Month --</option>
+                    <option value="0"  selected>-- Select Month --</option>
                     <option value="{{item.MonthName}}" *ngFor="let item of MonthList">{{item.MonthName}}</option>
                 </select>
             </div>
             <div class="">
                 <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedStatus">
-                    <option value="0" disabled selected>-- Status --</option>
+                    <option value="0"  selected>-- Status --</option>
                     <option [ngValue]="true">Active</option>
                     <option [ngValue]="false">In Active</option>
                 </select>
@@ -55,7 +55,7 @@
         <div class="search-div">
             <div>
                 <label for="">Search :</label>
-                <input type="search" [(ngModel)]="searchQuery" (input)="filteredData()" name="serachnm" id="searchid"
+                <input type="search" [(ngModel)]="searchQuery" (input)="GetBillingDataFiter()" name="serachnm" id="searchid"
                     class="search">
                 <button class="btn btn-billing" (click)="AddNewBilling()">Add New
                     Billing</button>
@@ -100,7 +100,7 @@
                             <select name="" id="" class="dropdown-popup" [(ngModel)]="Billing.FiscalYearId">
                                 <option value="0" selected>-- Select --</option>
                                 <option [ngValue]="item.FId" *ngFor="let item of FiscialYearsList">
-                                    {{item.FiscialYearName}}</option>
+                                    {{item.FiscalYearName}}</option>
                             </select>
                         </div>
                         <div>
@@ -169,11 +169,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of filteredData(); let i = index ">
+                        <tr *ngFor="let item of BillingList; let i = index ">
                             <td>{{ i +1}}</td>
                             <td>{{ item.CompanyName}}</td>
                             <td>{{ item.YearName }}</td>
-                            <td>{{ item.FiscialYearName }}</td>
+                            <td>{{ item.FiscalYearName }}</td>
                             <td>{{ item.ProjectName }}</td>
                             <td>{{ item.Type }}</td>
                             <td>{{ item.HiringManager }}</td>

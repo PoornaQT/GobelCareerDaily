@@ -2,6 +2,6 @@
 
 export class FiscialYear {
     FId: number = 0;
-    FiscialYearName!: string;
+    FiscalYearName!: string;
     IsActive!: boolean
 }

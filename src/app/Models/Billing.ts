@@ -22,7 +22,7 @@ export class Billing {
     Year!: number;
     YearName!: string;
     FiscalYearId!: number;
-    FiscialYearName!: string;
+    FiscalYearName!: string;
     ProjectId!: number;
     ProjectName!: string;
     Type!: string;
@@ -50,7 +50,7 @@ export class NewBilling {
 
 export class PoNumberDetails {
     CompanyName!: string;
-    FiscialYearName!: string;
+    FiscalYearName!: string;
     ProjectName!: string;
     HiringManager!: string;
     PONumber!: number;

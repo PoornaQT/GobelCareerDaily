@@ -39,4 +39,10 @@ export class BillingDataService {
       `${this.BILLING_URL}UpdateBillingData`, billingData);
   }
 
+  GetBillingDataFiter(companyId: number, yearId: number, FiscalYearId: number): any {
+    return this.Http.get(
+      `${this.BILLING_URL}GetBillingdata/${companyId}/${yearId}/${FiscalYearId}
+      `)
+  }
+
 }

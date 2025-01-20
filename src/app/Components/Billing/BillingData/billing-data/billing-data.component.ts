@@ -40,16 +40,16 @@ export class BillingDataComponent implements OnInit {
   projectList: Project[] = [];
   newBillingData: NewBilling = new NewBilling()
 
-  SelectedCompany: string = '0';
-  SelectedYear: string = '0';
-  SelectedFiscialYear: string = '0';
+  SelectedCompany: number = 0;
+  SelectedYear: number = 0;
+  SelectedFiscialYear: number = 0;
   SelectedMonth: string = '0';
   SelectedStatus: string = '0';
 
   Add_Edit !: boolean;
 
   ngOnInit(): void {
-    this.fetchBillingData();
+    this.GetBillingDataFiter();
     this.GetCompanies();
     this.GetYears();
     this.GetFiscialYears();
@@ -59,78 +59,21 @@ export class BillingDataComponent implements OnInit {
 
   AddFields: boolean = false;
   searchQuery: string = '';
-  Actions !: boolean[]
+  Actions !: boolean[];
 
-  filteredData() {
-    const search = this.searchQuery ? this.searchQuery.toString().toLowerCase() : '';
-    if (this.SelectedCompany !== '0') {
-      var selectedCompany = this.SelectedCompany ? this.SelectedCompany.toLowerCase() : '';
-    }
-    if (this.SelectedYear !== '0') {
-      var selectedYear = this.SelectedYear ? this.SelectedYear.toLowerCase() : '';
-    }
-    if (this.SelectedFiscialYear !== '0') {
-      var selectedFiscialYear = this.SelectedFiscialYear ? this.SelectedFiscialYear.toLowerCase() : '';
-    }
-    if (this.SelectedMonth !== '0') {
-      var selectedmonth = this.SelectedMonth ? this.SelectedMonth.toString().toLowerCase() : '';
-    }
-    if (this.SelectedStatus !== '0') {
-      debugger
-      var selectedstatus = this.SelectedStatus ? this.SelectedStatus.toString().toLowerCase() : '';
-    }
-    if (this.BillingList) {
-      return this.BillingList.filter((item: any) => {
-        const matchesSearch = search
-          ? Object.values(item).some((val: any) => {
-            if (val === null || val === undefined) return false;
-            return val.toString().toLowerCase().includes(search);
-          })
-          : true;
-        var matchesCompany = selectedCompany
-          ? item.CompanyName && item.CompanyName.toString().toLowerCase() === selectedCompany
-          : true;
-        var matchYear = selectedYear
-          ? item.YearName && item.YearName.toString().toLowerCase() === selectedYear
-          : true;
-        var matchFiscialYear = selectedFiscialYear
-          ? item.FiscialYearName && item.FiscialYearName.toString().toLowerCase() === selectedFiscialYear
-          : true;
-        var matchStatus = selectedstatus
-          ? item.IsActive && item.IsActive.toString().toLowerCase() === selectedstatus
-          : true;
-
-        // var matchMonth = selectedmonth
-        //   ? item.MonthName && item.MonthName.toString().toLowerCase() === selectedCompany
-        //   : true;
-        return matchesSearch && matchesCompany && matchYear && matchFiscialYear && matchStatus
-          ;
-      });
-    }
-    else {
-      return null
-    }
-  };
-
-
-
-  fetchBillingData(): any {
-    this.billingService.fetchBillingData().subscribe({
+  GetBillingDataFiter(): any {
+    debugger
+    this.billingService.GetBillingDataFiter(this.SelectedCompany, this.SelectedYear, this.SelectedFiscialYear).subscribe({
       next: (responce: any) => {
-        if (responce.StatusCode == 200 || responce.StatusCode === 201) {
+        if (responce.IsSuccess) {
           this.BillingList = responce.Data;
         }
         else {
-          alert("Seriver is not responding, Please check the server and try again...")
-          console.log("StatusCode:", responce.StatusCode, " Error: ", responce.Message);
+          alert(responce.Message);
         }
-      },
-      error: (err: any) => {
-        alert("Unable to connect to the server. Please ensure the server is running and try again.");
-        console.error("HTTP Error:", err.message);
-      },
-    });
-  };
+      }
+    })
+  }
 
   GetCompanies(): any {
     this.companyService.GetCompanies().subscribe({
@@ -210,32 +153,32 @@ export class BillingDataComponent implements OnInit {
     this.AddFields = !this.AddFields;
   };
 
-  GetPONumberDetails(BId: number,POId:number) {
-    const encodedId = btoa(BId.toString()); 
-    const encodedPONumberId = btoa(POId.toString()); 
-    this.route.navigate(['/monthlyBudget', encodedId,encodedPONumberId]);
+  GetPONumberDetails(BId: number, POId: number) {
+    const encodedId = btoa(BId.toString());
+    const encodedPONumberId = btoa(POId.toString());
+    this.route.navigate(['/monthlyBudget', encodedId, encodedPONumberId]);
   };
 
 
   DeleteBillingdata(BId: number): any {
     const confirmed = window.confirm("Are you sure you want to delete this item?");
-    if(confirmed){
-    this.billingService.deleteBillingData(BId).subscribe({
-      next: (responce: any) => {
-        if (responce.StatusCode === 200 || responce.StatusCode === 201) {
-          alert(responce.Message);
-          this.fetchBillingData();
+    if (confirmed) {
+      this.billingService.deleteBillingData(BId).subscribe({
+        next: (responce: any) => {
+          if (responce.StatusCode === 200 || responce.StatusCode === 201) {
+            alert(responce.Message);
+            this.GetBillingDataFiter();
+          }
+          else {
+            alert(responce.Message);
+            this.GetBillingDataFiter();
+          }
+        },
+        error: (error: any) => {
+          console.log("HTTP Error:", error.message);
         }
-        else {
-          alert(responce.Message);
-          this.fetchBillingData();
-        }
-      },
-      error: (error: any) => {
-        console.log("HTTP Error:", error.message);
-      }
-    })
-  }
+      })
+    }
   }
 
 
@@ -268,12 +211,12 @@ export class BillingDataComponent implements OnInit {
       next: (response: any) => {
         if (response.StatusCode === 200 || response.StatusCode === 201) {
           this.AddFields = !this.AddFields;
-          this.fetchBillingData();
+          this.GetBillingDataFiter();
           this.Add_Edit = false;
           alert(response.IsSucess || 'Billing data updated successfully.');
         } else {
           alert(response.Message || 'Failed to update billing data.');
-          this.fetchBillingData();
+          this.GetBillingDataFiter();
         }
       },
       error: (error: any) => {
