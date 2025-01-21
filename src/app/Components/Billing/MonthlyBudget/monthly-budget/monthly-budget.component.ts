@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Billing, PoNumberDetails } from '../../../../Models/Billing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BillingDataService } from '../../../../Services/Billing/billing-data.service';
 import { MonthlyBudget } from '../../../../Models/MonthlyBudget';
 import { MonthlyBudgetService } from '../../../../Services/MonthlyBudget/monthly-budget.service';
@@ -23,7 +23,8 @@ export class MonthlyBudgetComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private billingService: BillingDataService,
-    private monthlyBudingService: MonthlyBudgetService
+    private monthlyBudingService: MonthlyBudgetService,
+    private router: Router
   ) { }
   ngOnInit(): void {
     this.converting();
@@ -44,6 +45,7 @@ export class MonthlyBudgetComponent implements OnInit {
     });
   }
   GetPonumberDetails(BId: number): any {
+    debugger
     this.billingService.GetPonumberDetails(BId).subscribe({
       next: (response: any) => {
         if (response.StatusCode === 200 || response.StatusCode === 201) {
@@ -128,29 +130,29 @@ export class MonthlyBudgetComponent implements OnInit {
     })
   }
 
-  MonthlyBudgetByMBId(MBId: number, index:number): any {
-      this.monthlyBudingService.MonthlyBudgetByMBId(MBId).subscribe({
-        next: (response: any) => {
-          try {
-            if (response.StatusCode === 200) {
-              this.editingIndex = index;
-              this.monthlyBudgetData = response.Data;
-              // this.converting();
-              // alert(response.IsSuccess);
-            } else {
-              this.converting();
-              console.error("Error retrieving data: ", response.Message);
-            }
+  MonthlyBudgetByMBId(MBId: number, index: number): any {
+    this.monthlyBudingService.MonthlyBudgetByMBId(MBId).subscribe({
+      next: (response: any) => {
+        try {
+          if (response.StatusCode === 200) {
+            this.editingIndex = index;
+            this.monthlyBudgetData = response.Data;
+            // this.converting();
+            // alert(response.IsSuccess);
+          } else {
+            this.converting();
+            console.error("Error retrieving data: ", response.Message);
           }
-          catch (error: any) {
-            console.error("Error Something went wrong : ", response.Message);
-          }
-        },
-        error: (err: any) => {
-          console.error("Error occurred: ", err);
         }
-      });
-    
+        catch (error: any) {
+          console.error("Error Something went wrong : ", response.Message);
+        }
+      },
+      error: (err: any) => {
+        console.error("Error occurred: ", err);
+      }
+    });
+
   }
   CancelEdit() {
     this.editingIndex = null;
@@ -159,9 +161,16 @@ export class MonthlyBudgetComponent implements OnInit {
   get totalPOAmount(): number {
     return this.monthyBudgetlist.reduce((sum, row) => sum + parseInt(row.POAmount, 10), 0);
   }
-  
+
 
   get totalInvoicedAmount(): number {
-    return  this.monthyBudgetlist.reduce((sum, row) => sum + parseInt( row.InvoicedAmount, 10),0);
+    return this.monthyBudgetlist.reduce((sum, row) => sum + parseInt(row.InvoicedAmount, 10), 0);
+  }
+
+  goToMonthListPage() {
+    this.router.navigate(['/monthList']);
+  }
+  BackToBillingData(){
+    this.router.navigate(['/billingData'])
   }
 }

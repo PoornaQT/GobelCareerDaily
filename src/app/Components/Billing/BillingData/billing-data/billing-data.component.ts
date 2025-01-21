@@ -154,6 +154,7 @@ export class BillingDataComponent implements OnInit {
   };
 
   GetPONumberDetails(BId: number, POId: number) {
+    debugger
     const encodedId = btoa(BId.toString());
     const encodedPONumberId = btoa(POId.toString());
     this.route.navigate(['/monthlyBudget', encodedId, encodedPONumberId]);

@@ -10,6 +10,8 @@ import { ManageProjectComponent } from './Components/Manage/ManageProject/manage
 import { ManageClientComponent } from './Components/Manage/ManageClient/manage-client/manage-client.component';
 import { ManageVenderComponent } from './Components/Manage/ManageVender/manage-vender/manage-vender.component';
 import { ManageRoleComponent } from './Components/Manage/ManageRole/manage-role/manage-role.component';
+import { MonthList } from './Models/MonthList';
+import { MonthsListComponent } from './Components/Billing/MonthsList/months-list/months-list.component';
 // import { ManageProjectComponent } from './Components/Manage/ManageProject/manage-project/manage-project.component';
 
 const routes: Routes = [
@@ -23,14 +25,17 @@ const routes: Routes = [
     path: 'monthlyBudget/:BId/:POId', component: MonthlyBudgetComponent
   },
   {
+    path: 'monthList', component: MonthsListComponent
+  },
+  {
     path: 'addEmployee', component: AddEmployeeComponent
   },
   {
     path: 'montlyInvoice', component: MonthlyInVoiceComponent
   },
   {
-    path: 'manage', component: ManageComponent ,
-    children:[
+    path: 'manage', component: ManageComponent,
+    children: [
       {
         path: 'manageProject', component: ManageProjectComponent
       },

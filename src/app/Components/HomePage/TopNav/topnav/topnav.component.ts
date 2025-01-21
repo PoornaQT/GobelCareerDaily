@@ -11,7 +11,12 @@ export class TopnavComponent implements OnInit {
   constructor(private route: Router) { }
 
   UseName: String = "PRAVEEN"
+  isActive : boolean=false;
   
+  colorChange(){
+    this.isActive = true;
+  }
+
   ngOnInit(): void {
   }
 

@@ -15,6 +15,7 @@ import { ManageProjectComponent } from './Components/Manage/ManageProject/manage
 import { ManageVenderComponent } from './Components/Manage/ManageVender/manage-vender/manage-vender.component';
 import { ManageClientComponent } from './Components/Manage/ManageClient/manage-client/manage-client.component';
 import { ManageRoleComponent } from './Components/Manage/ManageRole/manage-role/manage-role.component';
+import { MonthsListComponent } from './Components/Billing/MonthsList/months-list/months-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ManageRoleComponent } from './Components/Manage/ManageRole/manage-role/
     ManageVenderComponent,
     ManageClientComponent,
     ManageRoleComponent,
+    MonthsListComponent,
   ],
   imports: [
     BrowserModule,
