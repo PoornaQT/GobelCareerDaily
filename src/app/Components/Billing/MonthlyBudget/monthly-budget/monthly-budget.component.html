@@ -39,7 +39,7 @@
           <tr *ngFor="let item of monthyBudgetlist; let i = index">
             <td>{{ item.PONumber }}</td>
             <td>
-              <a (click)="goToMonthListPage()">{{ item.MonthName }}</a>
+              <a (click)="goToMonthListPage(PonumberDetials.BId)">{{ item.MonthName }}</a>
             </td>
             <td *ngIf="editingIndex !== i">{{ item.POAmount }}</td>
             <td *ngIf="editingIndex === i">

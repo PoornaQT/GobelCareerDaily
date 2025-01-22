@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Billing, PoNumberDetails } from '../../../../Models/Billing';
+import { PoNumberDetails } from '../../../../Models/MonthlyBudget';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BillingDataService } from '../../../../Services/Billing/billing-data.service';
 import { MonthlyBudget } from '../../../../Models/MonthlyBudget';
 import { MonthlyBudgetService } from '../../../../Services/MonthlyBudget/monthly-budget.service';
-import { response } from 'express';
 
 @Component({
   selector: 'app-monthly-budget',
@@ -167,8 +166,9 @@ export class MonthlyBudgetComponent implements OnInit {
     return this.monthyBudgetlist.reduce((sum, row) => sum + parseInt(row.InvoicedAmount, 10), 0);
   }
 
-  goToMonthListPage() {
-    this.router.navigate(['/monthList']);
+  goToMonthListPage(BId : number) {
+    const encodedId = btoa(BId.toString());
+    this.router.navigate(['/monthList',encodedId]);
   }
   BackToBillingData(){
     this.router.navigate(['/billingData'])

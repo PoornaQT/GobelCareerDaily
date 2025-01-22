@@ -20,4 +20,22 @@ export class MonthService {
       })
     )
   }
+
+  GetMonthDetails_By_BillingId(BId: number): any {
+    return this.http.get(`${this.MONTH_URL}GetMonthDetails_By_BillingId/` + BId).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(() => new Error('Unable to fetch data from the server.'));
+      })
+    )
+  }
+
+  GetEmployeesListByPId(PId: number): any {
+    return this.http.get(`${this.MONTH_URL}GetEmployeesByPId/` + PId).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(() => new Error('Unable to fetch data from the server.'));
+      })
+    )
+  }
 }

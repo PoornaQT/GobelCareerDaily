@@ -19,7 +19,7 @@
                 <p><strong>PO Number:</strong> {{ PonumberDetials.PONumber }}</p>
                 <p><strong>Type:</strong> {{ PonumberDetials.Type }}</p>
                 <p><strong>BDM:</strong> {{ PonumberDetials.BDMName }}</p>
-                <p><strong> Hours:</strong> </p>
+                <p><strong> Hours:</strong> {{PonumberDetials.Hours}} </p>
             </div>
         </div>
 
@@ -35,14 +35,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of monthList; let i = index">
-                        <td>{{ item.PONumber }}</td>
-                        <td>
-                            <a href="">{{ item.PONumber }}</a>
-                        </td>
-                        <td>{{ item.EmployeeName }}</td>
+                    <tr *ngFor="let item of employeeList; let i = index">
+                        <td>{{ PonumberDetials.PONumber  }}</td>
+                        <td>{{ item.FullName }}</td>
 
-                        <td>{{ item.monthName }}</td>
+                        <td>{{ item.Montn }}</td>
 
                         <td>{{ item.Hours }}</td>
 
@@ -54,14 +51,15 @@
                             <a *ngIf="editingIndex === i" >Cancel</a>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td></td>
                         <td style="font-weight: bold;">Total</td>
-                        <!-- <td style="font-weight: bold;">{{ totalPOAmount | currency }}</td>
-                        <td style="font-weight: bold;">{{ totalInvoicedAmount | currency }}</td> -->
+                        <td style="font-weight: bold;">{{ totalPOAmount | currency }}</td>
+                        <td style="font-weight: bold;">{{ totalInvoicedAmount | currency }}</td>
                         <td></td>
                         <td></td>
-                    </tr>
+                        <td></td>
+                    </tr> -->
                 </tbody>
 
 

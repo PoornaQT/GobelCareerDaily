@@ -40,21 +40,11 @@ export class Billing {
 
 
 export class NewBilling {
-    CompanyId: number=0;
-    Ponumber: number=0;
-    FiscalYear: number=0;
-    ProjectId: number=0;
+    CompanyId: number = 0;
+    Ponumber: number = 0;
+    FiscalYear: number = 0;
+    ProjectId: number = 0;
     F_Year: boolean = false
     IsActive: boolean = false;
 }
 
-export class PoNumberDetails {
-    CompanyName!: string;
-    FiscalYearName!: string;
-    ProjectName!: string;
-    HiringManager!: string;
-    PONumber!: number;
-    Type!: string;
-    BDMName!: string;
-    EmpCount!: number;
-}

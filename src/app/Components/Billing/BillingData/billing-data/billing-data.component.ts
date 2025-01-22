@@ -59,7 +59,7 @@ export class BillingDataComponent implements OnInit {
 
   AddFields: boolean = false;
   searchQuery: string = '';
-  Actions !: boolean[];
+  // Actions !: boolean[];
 
   GetBillingDataFiter(): any {
     debugger
@@ -214,6 +214,7 @@ export class BillingDataComponent implements OnInit {
           this.AddFields = !this.AddFields;
           this.GetBillingDataFiter();
           this.Add_Edit = false;
+          this.Billing = new Billing();
           alert(response.IsSucess || 'Billing data updated successfully.');
         } else {
           alert(response.Message || 'Failed to update billing data.');
