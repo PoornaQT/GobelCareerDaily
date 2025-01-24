@@ -1,5 +1,5 @@
 .monthlyBudget {
-    width: 12vh;
+    width: fit-content;
     color: var(--bg-blue-color);
     border: none;
     font-weight: bold;

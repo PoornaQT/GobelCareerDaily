@@ -1,5 +1,5 @@
 .bill {
-    width: 130px;
+    width:fit-content;
     color: var(--bg-blue-color);
     border: none;
     font-weight: bold;
@@ -24,7 +24,7 @@
     margin-right: 5px;
 }
 .button{
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 select{

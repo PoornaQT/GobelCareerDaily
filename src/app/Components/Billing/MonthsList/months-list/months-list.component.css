@@ -1,5 +1,5 @@
 .monthlist {
-    width: auto;
+    width: fit-content;
     color: var(--bg-blue-color);
     border: none;
     font-weight: bold;
@@ -58,4 +58,8 @@ a {
     text-decoration: none;
     color: var(--bg-blue-color) !important;
     cursor: pointer;
+}
+
+.btn-update{
+    float: inline-end;
 }

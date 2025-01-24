@@ -24,13 +24,13 @@ const routes: Routes = [
     path: 'monthlyBudget/:BId/:POId', component: MonthlyBudgetComponent
   },
   {
-    path: 'monthList/:BId', component: MonthsListComponent
+    path: 'monthList/:BId/:MId', component: MonthsListComponent
   },
   {
     path: 'addEmployee', component: AddEmployeeComponent
   },
   {
-    path: 'montlyInvoice', component: MonthlyInVoiceComponent
+    path: 'monthlyInvoice', component: MonthlyInVoiceComponent
   },
   {
     path: 'manage', component: ManageComponent,

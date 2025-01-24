@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_URLS } from '../../Envirolmant/Env';
 import { catchError, throwError } from 'rxjs';
+import { EmployeeList } from '../../Models/MonthList';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,17 @@ export class MonthService {
     )
   }
 
-  GetEmployeesListByPId(PId: number): any {
-    return this.http.get(`${this.MONTH_URL}GetEmployeesByPId/` + PId).pipe(
+  GetEmployeesListByPId(PId: number,MId :number): any {
+    return this.http.get(`${this.MONTH_URL}GetEmployeesByPId/${PId}/${MId}`).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError(() => new Error('Unable to fetch data from the server.'));
+      })
+    )
+  }
+
+  AddMonthlyEmployeesList(employeeList: EmployeeList[]): any {
+    return this.http.post(`${this.MONTH_URL}AddMonthlyEmployeesList`,employeeList).pipe(
       catchError(error => {
         console.error('Error occurred:', error);
         return throwError(() => new Error('Unable to fetch data from the server.'));

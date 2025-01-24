@@ -18,7 +18,9 @@ export class MonthsListComponent implements OnInit {
 
   editingIndex: number | null = null;
   PonumberDetials: MonthEmpDetails = new MonthEmpDetails();
- employeeList: EmployeeList[]=[];
+  employeeList: EmployeeList[] = [];
+  monthlyEmployees: EmployeeList[] = [];
+  MonthId: number = 0;
 
 
   ngOnInit(): void {
@@ -27,10 +29,13 @@ export class MonthsListComponent implements OnInit {
 
   ConvertingBId() {
     this.activateRouter.paramMap.subscribe(params => {
-      const encodedId = params.get("BId");
-      if (encodedId) {
-        const decodeId = atob(encodedId);
-        const numaricBId = Number(decodeId);
+      const encodedBId = params.get("BId");
+      const encodedMId = params.get("MId");
+      if (encodedBId && encodedMId) {
+        const decodeBId = atob(encodedBId);
+        const decodeMId = atob(encodedMId);
+        const numaricBId = Number(decodeBId);
+        this.MonthId = Number(decodeMId);
         this.GetMonthlyListByBId(numaricBId);
       }
     })
@@ -42,7 +47,7 @@ export class MonthsListComponent implements OnInit {
     const encodedPONumber = this.PonumberDetials.PONumber;
     const encodedBId = btoa(encoded.toString());
     const encodedId = btoa(encodedPONumber.toString());
-    this.router.navigate(['/monthlyBudget',encodedBId,encodedId]);
+    this.router.navigate(['/monthlyBudget', encodedBId, encodedId]);
   }
 
 
@@ -64,7 +69,8 @@ export class MonthsListComponent implements OnInit {
   };
 
   GetEmployeesListByPId(PId: number) {
-    this.monthService.GetEmployeesListByPId(PId).subscribe({
+    debugger
+    this.monthService.GetEmployeesListByPId(PId, this.MonthId).subscribe({
       next: (response: any) => {
         if (response.IsSuccess) {
           this.employeeList = response.Data;
@@ -78,5 +84,25 @@ export class MonthsListComponent implements OnInit {
     });
   };
 
+
+  AddMonthlyEmployeesList() {
+    debugger
+    this.employeeList.forEach((employee: any) => {
+      employee.IsActive = true;
+    });
+    this.monthService.AddMonthlyEmployeesList(this.employeeList).subscribe({
+      next: (response: any) => {
+        if (response.IsSuccess) {
+          // this.employeeList = response.Data;
+          alert(response.Message);
+        } else {
+          console.error("Error retrieving data: ", response.Message);
+        }
+      },
+      error: (err: any) => {
+        console.error("Error occurred: ", err);
+      }
+    });
+  }
 
 }

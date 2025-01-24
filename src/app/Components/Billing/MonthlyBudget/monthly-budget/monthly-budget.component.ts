@@ -166,9 +166,10 @@ export class MonthlyBudgetComponent implements OnInit {
     return this.monthyBudgetlist.reduce((sum, row) => sum + parseInt(row.InvoicedAmount, 10), 0);
   }
 
-  goToMonthListPage(BId : number) {
-    const encodedId = btoa(BId.toString());
-    this.router.navigate(['/monthList',encodedId]);
+  goToMonthListPage(BId : number, MId:number) {
+    const encodedBId = btoa(BId.toString());
+    const encodedMId = btoa(MId.toString());
+    this.router.navigate(['/monthList',encodedBId,encodedMId]);
   }
   BackToBillingData(){
     this.router.navigate(['/billingData'])
