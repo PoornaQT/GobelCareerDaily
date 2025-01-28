@@ -14,7 +14,7 @@ export class TopnavComponent implements OnInit {
   isActive : boolean=false;
   
   colorChange(){
-    this.isActive = true;
+    // this.isActive = true;
   }
 
   ngOnInit(): void {

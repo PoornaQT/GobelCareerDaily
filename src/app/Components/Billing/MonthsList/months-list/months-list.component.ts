@@ -23,6 +23,9 @@ export class MonthsListComponent implements OnInit {
   monthlyEmployees: EmployeeList[] = [];
   MonthId: number = 0;
   PoNumber: number = 0;
+  ActiveBool: boolean = false;
+  TotalCount: number = 0;
+
 
 
   ngOnInit(): void {
@@ -52,7 +55,7 @@ export class MonthsListComponent implements OnInit {
     this.router.navigate(['/monthlyBudget', encodedBId, encodedId]);
   }
 
-
+  // To display data in top of table
   GetMonthlyListByBId(BId: number) {
     debugger
     this.monthService.GetMonthDetails_By_BillingId(BId).subscribe({
@@ -71,12 +74,15 @@ export class MonthsListComponent implements OnInit {
     });
   };
 
+  // Table Display data
   GetEmployeesListByPId(PId: number) {
     debugger
     this.monthService.GetEmployeesListByPId(PId, this.MonthId, this.PoNumber).subscribe({
       next: (response: any) => {
         if (response.IsSuccess) {
           this.employeeList = response.Data;
+          this.totalInvoicedAmount();
+
         } else {
           console.error("Error retrieving data: ", response.Message);
         }
@@ -97,6 +103,7 @@ export class MonthsListComponent implements OnInit {
       next: (response: any) => {
         if (response.IsSuccess) {
           // this.employeeList = response.Data;
+          this.totalInvoicedAmount();
           alert(response.Message);
         } else {
           console.error("Error retrieving data: ", response.Message);
@@ -108,9 +115,15 @@ export class MonthsListComponent implements OnInit {
     });
   }
 
-  get totalInvoicedAmount(): any {
-    return this.employeeList.reduce((sum, row) => sum + parseInt(row.Hours, 10), 0)
+  totalInvoicedAmount(): any {
+    this.TotalCount = this.employeeList && this.employeeList.length > 0
+      ? this.employeeList.reduce((sum, row) => {
+        const hours = parseInt(row.Hours, 10);
+        return sum + (isNaN(hours) ? 0 : hours);
+      }, 0)
+      : 0;
   }
+
 
   // get totalInvoicedAmount(): any {
   //   return this.employeeList.reduce((sum, row) =>{

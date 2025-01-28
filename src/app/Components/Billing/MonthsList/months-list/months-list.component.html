@@ -52,18 +52,17 @@
                             <a *ngIf="editingIndex === i" >Cancel</a>
                         </td> -->
                     </tr>
-                    <tr *ngIf="totalInvoicedAmount >0">
+                    <tr *ngIf="TotalCount>0">
                         <td></td>
                         <td style="font-weight: bold;"></td>
                         <td style="font-weight: bold;">Total Hours</td>
-                        <td style="font-weight: bold;">{{ totalInvoicedAmount}} hrs</td>
+                        <td style="font-weight: bold;">{{ TotalCount}} hrs</td>
                     </tr>
                 </tbody>
-
-
             </table>
             <div>
-                <button class="btn-update btn" (click)="AddMonthlyEmployeesList()"> Save</button>
+                <button *ngIf="TotalCount==0" class="btn-update btn" (click)="AddMonthlyEmployeesList()">Save</button>
+                <button *ngIf="TotalCount>0" class="btn-update btn" >Update</button>
             </div>
         </div>
     </div>
