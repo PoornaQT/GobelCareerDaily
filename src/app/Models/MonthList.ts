@@ -17,11 +17,11 @@ export class MonthEmpDetails {
 
 export class EmployeeList {
     EId: number = 0;
-    FullName !: string;
+    EmployeeName !: string;
     PONumber !: number;
     MonthId: number = 0;
     MonthName!: string;
-    Hours!: string;
+    Hours: string = '0';
     IsActive: boolean = true;
 
 }

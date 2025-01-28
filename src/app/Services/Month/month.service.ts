@@ -31,8 +31,8 @@ export class MonthService {
     )
   }
 
-  GetEmployeesListByPId(PId: number,MId :number): any {
-    return this.http.get(`${this.MONTH_URL}GetEmployeesByPId/${PId}/${MId}`).pipe(
+  GetEmployeesListByPId(PId: number,MId :number, PoNumber:number): any {
+    return this.http.get(`${this.MONTH_URL}GetEmployeesByPId/${PId}/${MId}/${PoNumber}`).pipe(
       catchError(error => {
         console.error('Error occurred:', error);
         return throwError(() => new Error('Unable to fetch data from the server.'));

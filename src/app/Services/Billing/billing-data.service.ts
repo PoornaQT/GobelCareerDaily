@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { API_URLS } from '../../Envirolmant/Env';
 import { error } from 'console';
-import { Billing } from '../../Models/Billing';
+import { Billing, dropDownFilter } from '../../Models/Billing';
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +39,13 @@ export class BillingDataService {
       `${this.BILLING_URL}UpdateBillingData`, billingData);
   }
 
-  GetBillingDataFiter(companyId: number, yearId: number, FiscalYearId: number): any {
-    return this.Http.get(
-      `${this.BILLING_URL}GetBillingdata/${companyId}/${yearId}/${FiscalYearId}
-      `)
+  GetBillingDataFiter(dropdownfilter: dropDownFilter): any {
+    return this.Http.post(
+      `${this.BILLING_URL}GetBillingdata`, dropdownfilter)
   }
 
+  Get_EmployeesStatus(): any {
+    return this.Http.get(
+      `${this.BILLING_URL}Get_EmployeesStatus`)
+  }
 }

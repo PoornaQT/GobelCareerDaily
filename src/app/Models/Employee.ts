@@ -18,6 +18,7 @@ export class Employee {
     BillableId: number = 0;
     RoleType: number = 0;
     OnBoardingStatusId: number = 0;
-    Experence !: string;
+    Experience !: string;
     IsActive!: boolean;
 }
+

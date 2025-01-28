@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BillingDataService } from '../../../../Services/Billing/billing-data.service';
-import { NewBilling, Billing } from '../../../../Models/Billing';
+import { NewBilling, Billing, EmployeeStatus, dropDownFilter } from '../../../../Models/Billing';
 import { CompanyService } from '../../../../Services/Company/company.service';
 import { Company } from '../../../../Models/Company';
 import { YearService } from '../../../../Services/Year/year.service';
@@ -12,8 +12,6 @@ import { MonthService } from '../../../../Services/Month/month.service';
 import { ProjectServiceService } from '../../../../Services/Project/project-service.service';
 import { Project } from '../../../../Models/Project';
 import { Router } from '@angular/router';
-import { error } from 'console';
-import { response } from 'express';
 
 @Component({
   selector: 'app-billing-data',
@@ -38,17 +36,14 @@ export class BillingDataComponent implements OnInit {
   FiscialYearsList: FiscialYear[] = [];
   MonthList: Month[] = [];
   projectList: Project[] = [];
-  newBillingData: NewBilling = new NewBilling()
-
-  SelectedCompany: number = 0;
-  SelectedYear: number = 0;
-  SelectedFiscialYear: number = 0;
-  SelectedMonth: string = '0';
-  SelectedStatus: string = '0';
+  newBillingData: NewBilling = new NewBilling();
+  employeeStatus: EmployeeStatus[] = [];
+  dropdownfilter: dropDownFilter = new dropDownFilter();
 
   Add_Edit !: boolean;
 
   ngOnInit(): void {
+    this.Get_EmployeesStatus();
     this.GetBillingDataFiter();
     this.GetCompanies();
     this.GetYears();
@@ -62,8 +57,14 @@ export class BillingDataComponent implements OnInit {
   // Actions !: boolean[];
 
   GetBillingDataFiter(): any {
+    this.dropdownfilter.SelectedCompany = Number(this.dropdownfilter.SelectedCompany);
+    this.dropdownfilter.SelectedFiscialYear = Number(this.dropdownfilter.SelectedFiscialYear);
+    this.dropdownfilter.SelectedMonth = Number(this.dropdownfilter.SelectedMonth);
+    this.dropdownfilter.SelectedStatus = Number(this.dropdownfilter.SelectedStatus);
+    this.dropdownfilter.SelectedYear = Number(this.dropdownfilter.SelectedYear);
     debugger
-    this.billingService.GetBillingDataFiter(this.SelectedCompany, this.SelectedYear, this.SelectedFiscialYear).subscribe({
+
+    this.billingService.GetBillingDataFiter(this.dropdownfilter).subscribe({
       next: (responce: any) => {
         if (responce.IsSuccess) {
           this.BillingList = responce.Data;
@@ -241,15 +242,20 @@ export class BillingDataComponent implements OnInit {
     this.AddFields = !this.AddFields;
   }
 
-  details: any = [
-    { "count": 340, "status": "Active Employee" },
-    { "count": 263, "status": "W2" },
-    { "count": 77, "status": "C2C" },
-    { "count": 3, "status": "OnBench" },
-    { "count": 433, "status": "InProgress" },
-    { "count": 40, "status": "Resigned" },
-    { "count": 52, "status": "Project Completed" }
-  ];
+
+  Get_EmployeesStatus(): any {
+    this.billingService.Get_EmployeesStatus().subscribe({
+      next: (responce: any) => {
+        if (responce) {
+          this.employeeStatus = responce.Data;
+        }
+        else {
+          console.error(responce.Message);
+        }
+      }
+    })
+  }
+
 
 }
 

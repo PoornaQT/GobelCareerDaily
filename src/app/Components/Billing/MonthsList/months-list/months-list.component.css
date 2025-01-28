@@ -6,6 +6,11 @@
     border-bottom: 2px solid var(--bg-orange-color);
     font-family: var(--font-family)
 }
+.container{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    
+}
 
 .btn {
     background-color: var(--bg-blue-color);
@@ -13,10 +18,6 @@
 }
 
 .fields-containt {
-    /* background-color: var(--bg-blue-color); */
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
     margin: 2% 15%;
 }
 
@@ -62,4 +63,5 @@ a {
 
 .btn-update{
     float: inline-end;
+    /* margin-bottom: 15%; */
 }

@@ -5,8 +5,9 @@
         </div>
         <div class="dropdown">
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedCompany" (change)="GetBillingDataFiter()">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="dropdownfilter.SelectedCompany" (change)="GetBillingDataFiter()">
                     <option value="0"  selected>-- Select Company --</option>
+                    <!-- <option value="0" disabled > Select All </option> -->
                     <option class="companycls" *ngFor="let company of CompanyList" [value]="company.CId">
                         {{company.CompanyName}}
                     </option>
@@ -14,30 +15,30 @@
 
             </div>
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedYear" (change)="GetBillingDataFiter()">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="dropdownfilter.SelectedYear" (change)="GetBillingDataFiter()">
                     <option value="0" selected >-- Select Year --</option>
                     <option class="opYearcls" value="{{item.YId}}" *ngFor="let item of YearsList">{{item.YearName}}
                     </option>
                 </select>
             </div>
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedFiscialYear" (change)="GetBillingDataFiter()">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="dropdownfilter.SelectedFiscialYear" (change)="GetBillingDataFiter()">
                     <option value="0" selected >-- Select FiscalYear --</option>
                     <option value="{{item.FId}}" *ngFor="let item of FiscialYearsList">
                         {{item.FiscalYearName}}</option>
                 </select>
             </div>
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedMonth">
+                <select name="" id="" class="select-dropdown" [(ngModel)]="dropdownfilter.SelectedMonth" (change)="GetBillingDataFiter()">
                     <option value="0"  selected>-- Select Month --</option>
                     <option value="{{item.MonthName}}" *ngFor="let item of MonthList">{{item.MonthName}}</option>
                 </select>
             </div>
             <div class="">
-                <select name="" id="" class="select-dropdown" [(ngModel)]="SelectedStatus">
-                    <option value="0"  selected>-- Status --</option>
-                    <option [ngValue]="true">Active</option>
-                    <option [ngValue]="false">In Active</option>
+                <select name="" id="" class="select-dropdown" [(ngModel)]="dropdownfilter.SelectedStatus" (change)="GetBillingDataFiter()">
+                    <option value="-1"  selected>-- Status --</option>
+                    <option value="1">Active</option>
+                    <option value="0">In Active</option>
                 </select>
             </div>
         </div>
@@ -45,9 +46,9 @@
 
         <div class="row">
             <div class="sub-container">
-                <div *ngFor="let item of details" class="sub-div gobelOrangeColor">
-                    <p>{{ item.count }}</p>
-                    <span>{{ item.status }}</span>
+                <div *ngFor="let item of employeeStatus" class="sub-div gobelOrangeColor">
+                    <p>{{ item.Count }}</p>
+                    <span>{{ item.Name }}</span>
                 </div>
             </div>
         </div>
@@ -56,7 +57,7 @@
         <div class="search-div">
             <div>
                 <label for="">Search :</label>
-                <input type="search" [(ngModel)]="searchQuery" (input)="GetBillingDataFiter()" name="serachnm" id="searchid"
+                <input type="search" [(ngModel)]="dropdownfilter.SearchTerm" (input)="GetBillingDataFiter()" name="serachnm" id="searchid"
                     class="search">
                 <button class="btn btn-billing" (click)="AddNewBilling()">Add New
                     Billing</button>

@@ -48,3 +48,18 @@ export class NewBilling {
     IsActive: boolean = false;
 }
 
+export class EmployeeStatus {
+    Name !: string;
+    Count!: number;
+}
+
+
+
+export class dropDownFilter {
+    SelectedCompany: number = 0;
+    SelectedYear: number = 0;
+    SelectedFiscialYear: number = 0;
+    SelectedMonth: number = 0;
+    SelectedStatus: number = 1;
+    SearchTerm: string='';
+}

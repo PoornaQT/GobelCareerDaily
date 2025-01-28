@@ -37,11 +37,12 @@
                 <tbody>
                     <tr *ngFor="let item of employeeList; let i = index">
                         <td>{{ item.PONumber }}</td>
-                        <td>{{ item.FullName }}</td>
+                        <td>{{ item.EmployeeName }}</td>
 
                         <td>{{ item.MonthName }}</td>
 
-                        <td><input type="text" name="" id="" [(ngModel)]="item.Hours"></td>
+                        <td *ngIf="item.Hours === null" ><input type="text" name="" id="" [(ngModel)]="item.Hours"></td>
+                        <td *ngIf="item.Hours !== null">{{item.Hours}}</td>
 
                         <!-- <td>
                             <a *ngIf="editingIndex !== i">Save </a>
@@ -51,15 +52,12 @@
                             <a *ngIf="editingIndex === i" >Cancel</a>
                         </td> -->
                     </tr>
-                    <!-- <tr>
+                    <tr *ngIf="totalInvoicedAmount >0">
                         <td></td>
-                        <td style="font-weight: bold;">Total</td>
-                        <td style="font-weight: bold;">{{ totalPOAmount | currency }}</td>
-                        <td style="font-weight: bold;">{{ totalInvoicedAmount | currency }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr> -->
+                        <td style="font-weight: bold;"></td>
+                        <td style="font-weight: bold;">Total Hours</td>
+                        <td style="font-weight: bold;">{{ totalInvoicedAmount}} hrs</td>
+                    </tr>
                 </tbody>
 
 

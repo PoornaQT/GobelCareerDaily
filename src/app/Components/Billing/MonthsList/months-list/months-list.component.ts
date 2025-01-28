@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeList, MonthEmpDetails } from '../../../../Models/MonthList';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MonthService } from '../../../../Services/Month/month.service';
+import { PrefixNot } from '@angular/compiler';
 
 @Component({
   selector: 'app-months-list',
@@ -21,6 +22,7 @@ export class MonthsListComponent implements OnInit {
   employeeList: EmployeeList[] = [];
   monthlyEmployees: EmployeeList[] = [];
   MonthId: number = 0;
+  PoNumber: number = 0;
 
 
   ngOnInit(): void {
@@ -57,6 +59,7 @@ export class MonthsListComponent implements OnInit {
       next: (response: any) => {
         if (response.StatusCode === 200 || response.StatusCode === 201) {
           this.PonumberDetials = response.Data;
+          this.PoNumber = response.Data.PONumber;
           this.GetEmployeesListByPId(response.Data.PId);
         } else {
           console.error("Error retrieving data: ", response.Message);
@@ -70,7 +73,7 @@ export class MonthsListComponent implements OnInit {
 
   GetEmployeesListByPId(PId: number) {
     debugger
-    this.monthService.GetEmployeesListByPId(PId, this.MonthId).subscribe({
+    this.monthService.GetEmployeesListByPId(PId, this.MonthId, this.PoNumber).subscribe({
       next: (response: any) => {
         if (response.IsSuccess) {
           this.employeeList = response.Data;
@@ -104,5 +107,16 @@ export class MonthsListComponent implements OnInit {
       }
     });
   }
+
+  get totalInvoicedAmount(): any {
+    return this.employeeList.reduce((sum, row) => sum + parseInt(row.Hours, 10), 0)
+  }
+
+  // get totalInvoicedAmount(): any {
+  //   return this.employeeList.reduce((sum, row) =>{
+  //     const hours = parseInt(row.Hours,10);
+  //     return  sum + (isNaN(hours  ) ? 0 : hours);
+  //   },0);
+  // }
 
 }
