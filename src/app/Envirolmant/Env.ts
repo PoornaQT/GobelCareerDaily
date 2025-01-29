@@ -15,3 +15,16 @@ export const API_URLS = {
     // EMPLOYEE_API_URL:"https://localhost:44384/api/Employee/",
     API_URL:"https://localhost:44384/api/"
 };
+
+
+export const msalConfig = {
+  auth: {
+    clientId: '49cdfa65-39b3-4049-9691-89ee21475e4a',
+    authority: 'https://login.microsoftonline.com/common',
+    redirectUri: 'http://localhost:4200/',
+  },
+  cache: {
+    cacheLocation: 'localStorage',
+    storeAuthStateInCookie: false,
+  },
+};

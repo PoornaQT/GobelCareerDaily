@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MsalService } from '@azure/msal-angular';
+import { AuthService } from '../../../../Services/Auth/auth.interceptor';
 
 @Component({
   selector: 'app-topnav',
@@ -8,16 +10,22 @@ import { Router } from '@angular/router';
 })
 export class TopnavComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router,
+    private msalService: MsalService,
+    private authService:AuthService
+  ) { }
 
-  UseName: String = "PRAVEEN"
-  isActive : boolean=false;
-  
-  colorChange(){
+
+  UseName: String | null = "PRAVEEN"
+  isActive: boolean = false;
+
+  colorChange() {
     // this.isActive = true;
   }
 
   ngOnInit(): void {
+    // this.UseName = localStorage.getItem('name');
+    // console.log("Profile Name",this.UseName)
   }
 
   goToBilling() {
@@ -28,8 +36,13 @@ export class TopnavComponent implements OnInit {
     this.route.navigate(['/manage']);
   }
 
-  
+
   navigateToAddEmployee(): void {
     this.route.navigate(['/addEmployee']);
+  }
+
+  logout() {
+    this.msalService.logout();
+    this.route.navigate(['/login']);
   }
 }

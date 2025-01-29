@@ -1,0 +1,59 @@
+/* Centering the login form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #f4f4f4; */
+  }
+  
+  /* Card styling */
+  .login-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+  }
+  
+  /* Heading */
+  .login-card h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  /* Paragraph */
+  .login-card p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  /* Microsoft login button */
+  .ms-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #2f2f2f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Button hover effect */
+  .ms-login-btn:hover {
+    background-color: #1e1e1e;
+  }
+  
+  /* Microsoft logo in button */
+  .ms-login-btn img {
+    width: 20px;
+    margin-right: 10px;
+  }
+  

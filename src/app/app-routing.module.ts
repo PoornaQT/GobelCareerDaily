@@ -11,6 +11,8 @@ import { ManageClientComponent } from './Components/Manage/ManageClient/manage-c
 import { ManageVenderComponent } from './Components/Manage/ManageVender/manage-vender/manage-vender.component';
 import { ManageRoleComponent } from './Components/Manage/ManageRole/manage-role/manage-role.component';
 import { MonthsListComponent } from './Components/Billing/MonthsList/months-list/months-list.component';
+import { LoginComponent } from './Components/AuthComponent/login/login.component';
+import { AppComponent } from './app.component';
 // import { ManageProjectComponent } from './Components/Manage/ManageProject/manage-project/manage-project.component';
 
 const routes: Routes = [
@@ -30,7 +32,13 @@ const routes: Routes = [
     path: 'addEmployee', component: AddEmployeeComponent
   },
   {
+    path: 'login', component: LoginComponent
+  },
+  {
     path: 'monthlyInvoice', component: MonthlyInVoiceComponent
+  },
+  {
+    path: 'appcomponent', component: AppComponent
   },
   {
     path: 'manage', component: ManageComponent,
