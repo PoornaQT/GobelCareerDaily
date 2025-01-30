@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { catchError, throwError } from 'rxjs';
 import { Project } from '../../Models/Project';
 
@@ -9,7 +9,7 @@ import { Project } from '../../Models/Project';
 })
 export class ProjectServiceService {
 
-  PROJECT_URL = `${API_URLS.API_URL}Project/`;
+  PROJECT_URL = `${env.API_URL}Project/`;
 
   constructor(private http: HttpClient) { }
 

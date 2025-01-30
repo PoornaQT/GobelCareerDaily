@@ -13,35 +13,36 @@ import { ManageRoleComponent } from './Components/Manage/ManageRole/manage-role/
 import { MonthsListComponent } from './Components/Billing/MonthsList/months-list/months-list.component';
 import { LoginComponent } from './Components/AuthComponent/login/login.component';
 import { AppComponent } from './app.component';
+import { MsalGuard } from '@azure/msal-angular';
 // import { ManageProjectComponent } from './Components/Manage/ManageProject/manage-project/manage-project.component';
 
 const routes: Routes = [
   {
-    path: 'topnav', component: TopnavComponent
+    path: 'topnav', component: TopnavComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'billingData', component: BillingDataComponent
+    path: 'billingData', component: BillingDataComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'monthlyBudget/:BId/:POId', component: MonthlyBudgetComponent
+    path: 'monthlyBudget/:BId/:POId', component: MonthlyBudgetComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'monthList/:BId/:MId', component: MonthsListComponent
+    path: 'monthList/:BId/:MId', component: MonthsListComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'addEmployee', component: AddEmployeeComponent
+    path: 'addEmployee', component: AddEmployeeComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login', component: LoginComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'monthlyInvoice', component: MonthlyInVoiceComponent
+    path: 'monthlyInvoice', component: MonthlyInVoiceComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'appcomponent', component: AppComponent
+    path: 'appcomponent', component: AppComponent,canActivate:[MsalGuard],
   },
   {
-    path: 'manage', component: ManageComponent,
+    path: 'manage', component: ManageComponent,canActivate:[MsalGuard],
     children: [
       {
         path: 'manageProject', component: ManageProjectComponent

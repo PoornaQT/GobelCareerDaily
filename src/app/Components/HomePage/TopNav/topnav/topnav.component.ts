@@ -43,6 +43,7 @@ export class TopnavComponent implements OnInit {
 
   logout() {
     this.msalService.logout();
+    localStorage.clear();
     this.route.navigate(['/login']);
   }
 }

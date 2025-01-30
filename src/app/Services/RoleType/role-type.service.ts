@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { RoleType } from '../../Models/RoleType';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { RoleType } from '../../Models/RoleType';
 })
 export class RoleTypeService {
 
-  ROLETYPE_URL = `${API_URLS.API_URL}RoleType/`;
+  ROLETYPE_URL = `${env.API_URL}RoleType/`;
 
   constructor(private Http:HttpClient) { }
 

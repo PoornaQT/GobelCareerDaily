@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { Vender } from '../../Models/vender';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Vender } from '../../Models/vender';
 })
 export class VenderService {
 
-  VENDER_URL = `${API_URLS.API_URL}Vender/`;
+  VENDER_URL = `${env.API_URL}Vender/`;
 
   constructor(private Http: HttpClient) { }
 

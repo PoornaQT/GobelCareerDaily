@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { catchError, throwError } from 'rxjs';
 })
 export class FiscialYearService {
 
-  FISCIALYEAR_URL = `${API_URLS.API_URL}FiscialYear/`;
+  FISCIALYEAR_URL = `${env.API_URL}FiscialYear/`;
 
   constructor(private http: HttpClient) { }
 

@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnBoardingStatusService {
 
-  ONBOARDINGSTATUS_URL = `${API_URLS.API_URL}OnBoardingStatus/`;
+  ONBOARDINGSTATUS_URL = `${env.API_URL}OnBoardingStatus/`;
 
   constructor(private Http: HttpClient) { }
 

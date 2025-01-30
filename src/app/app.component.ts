@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   constructor(private router: Router) { }
-  UserName: string | null = '';
+  UserName: string  | null = '';
+
   ngOnInit(): void {
     this.UserName = localStorage.getItem('name');
   }
-  title = 'GlobalCareers';
+ 
 
 
 }

@@ -36,7 +36,7 @@ export class ManageProjectComponent implements OnInit {
   }
 
   GetProjects(): any {
-    debugger
+  
     this.projectSeivce.GetProjects().subscribe({
       next: (responce: any) => {
         if (responce.StatusCode === 200 || 201) {

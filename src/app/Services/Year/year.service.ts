@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { API_URLS } from './../../Envirolmant/Env'
+import { env } from '../../../env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YearService {
 
-  YEAR_URL = `${API_URLS.API_URL}Year/`;
+  YEAR_URL = `${env.API_URL}Year/`;
 
   constructor(private Http: HttpClient) { }
 

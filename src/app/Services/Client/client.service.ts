@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { Client } from '../../Models/Clients';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Client } from '../../Models/Clients';
 })
 export class ClientService {
 
-  CLIENT_URL = `${API_URLS.API_URL}Client/`;
+  CLIENT_URL = `${env.API_URL}Client/`;
 
   constructor(private Http: HttpClient) { }
 

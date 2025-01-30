@@ -62,7 +62,7 @@ export class BillingDataComponent implements OnInit {
     this.dropdownfilter.SelectedMonth = Number(this.dropdownfilter.SelectedMonth);
     this.dropdownfilter.SelectedStatus = Number(this.dropdownfilter.SelectedStatus);
     this.dropdownfilter.SelectedYear = Number(this.dropdownfilter.SelectedYear);
-    debugger
+  
 
     this.billingService.GetBillingDataFiter(this.dropdownfilter).subscribe({
       next: (responce: any) => {

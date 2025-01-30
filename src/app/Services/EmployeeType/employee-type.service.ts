@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeTypeService {
 
-  EMPLOYEETYPE_URL = `${API_URLS.API_URL}EmployeeType/`;
+  EMPLOYEETYPE_URL = `${env.API_URL}EmployeeType/`;
 
   constructor(private Http:HttpClient) { }
 

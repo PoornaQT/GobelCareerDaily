@@ -17,23 +17,11 @@ import { ManageClientComponent } from './Components/Manage/ManageClient/manage-c
 import { ManageRoleComponent } from './Components/Manage/ManageRole/manage-role/manage-role.component';
 import { MonthsListComponent } from './Components/Billing/MonthsList/months-list/months-list.component';
 import { LoginComponent } from './Components/AuthComponent/login/login.component';
-import { MsalGuard, MsalInterceptor, MsalModule } from '@azure/msal-angular';
+import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
-import { msalConfig } from '../app/Envirolmant/Env'
 import { AuthService } from './Services/Auth/auth.interceptor';
+import { AuthModule } from './auth.module';
 
-
-// const msalConfig = {
-//   auth: {
-//     clientId: '49cdfa65-39b3-4049-9691-89ee21475e4a',
-//     authority: 'https://login.microsoftonline.com/common',
-//     redirectUri: 'http://localhost:4200/',
-//   },
-//   cache: {
-//     cacheLocation: 'localStorage',
-//     storeAuthStateInCookie: false,
-//   },
-// };
 
 @NgModule({
   declarations: [
@@ -59,18 +47,18 @@ import { AuthService } from './Services/Auth/auth.interceptor';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MsalModule.forRoot(new PublicClientApplication(msalConfig), {
-      interactionType: InteractionType.Redirect,
-      authRequest: {
-        scopes: ['user.read'],
-      },
-    }, {
-      interactionType: InteractionType.Redirect,
-      protectedResourceMap: new Map([
-        ['https://graph.microsoft.com/v1.0/me', ['user.read']]
-      ])
-    }),
-
+    // MsalModule.forRoot(new PublicClientApplication(msalConfig), {
+    //   interactionType: InteractionType.Redirect,
+    //   authRequest: {
+    //     scopes: ['user.read'],
+    //   },
+    // }, {
+    //   interactionType: InteractionType.Redirect,
+    //   protectedResourceMap: new Map([
+    //     ['https://graph.microsoft.com/v1.0/me', ['user.read']]
+    //   ])
+    // }),
+    AuthModule
   ],
   providers: [
     MsalInterceptor, MsalGuard,
@@ -79,8 +67,9 @@ import { AuthService } from './Services/Auth/auth.interceptor';
       useClass: AuthService, // Add the AuthInterceptor to the provider array
       multi: true // Ensures that multiple interceptors can be added if needed
     },
+  
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,MsalRedirectComponent]
 })
 export class AppModule { }

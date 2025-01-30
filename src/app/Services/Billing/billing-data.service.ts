@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { error } from 'console';
 import { Billing, dropDownFilter } from '../../Models/Billing';
 
@@ -10,7 +10,7 @@ import { Billing, dropDownFilter } from '../../Models/Billing';
 })
 export class BillingDataService {
 
-  BILLING_URL = `${API_URLS.API_URL}BillingData/`;
+  BILLING_URL = `${env.API_URL}BillingData/`;
 
   constructor(private Http: HttpClient) { }
 

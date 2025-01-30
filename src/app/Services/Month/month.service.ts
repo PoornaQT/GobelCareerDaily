@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { catchError, throwError } from 'rxjs';
 import { EmployeeList } from '../../Models/MonthList';
 
@@ -9,7 +9,7 @@ import { EmployeeList } from '../../Models/MonthList';
 })
 export class MonthService {
 
-  MONTH_URL = `${API_URLS.API_URL}Month/`;
+  MONTH_URL = `${env.API_URL}Month/`;
 
   constructor(private http: HttpClient) { }
 

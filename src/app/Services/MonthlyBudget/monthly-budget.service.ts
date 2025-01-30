@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URLS } from '../../Envirolmant/Env';
+import { env } from '../../../env/environment';
 import { MonthlyBudget } from '../../Models/MonthlyBudget';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { MonthlyBudget } from '../../Models/MonthlyBudget';
 })
 export class MonthlyBudgetService {
 
-  MONTHLYBUDGET_URL = `${API_URLS.API_URL}MonthlyBudget/`;
+  MONTHLYBUDGET_URL = `${env.API_URL}MonthlyBudget/`;
   constructor(private Http: HttpClient) { }
 
   GetMonthlyBudgetByPONumber(PONumber: number): any {
